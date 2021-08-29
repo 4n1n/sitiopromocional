@@ -1,1 +1,36 @@
-Listado de productos
+<html>
+    <head>
+        <title>Listado de Productos</title>
+        <p><h2 style="text-align: center";>Listado de Productos</h2></p>
+        <!--Agrego estilo para los bordes de los elementos de las tablas-->
+        <style>
+        table, th, td, tr {
+          border: 1px solid black;
+        }
+        </style>
+    </head>    
+    <body>
+        <table >
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--Uso un for para recorrer cada objeto PRODUCTS-->
+                {% for p in oproductos %}
+                <tr>
+                    <!--Cargo la propiedad descripcion para cada objeto p-->
+                    <td>{{p.descripcion}}</td>
+                    <td>{{p.categoria.descripcion}}</td>
+                </tr>
+                <!--Cierro el for-->
+                {% endfor %}
+            </tbody>
+        </table>
+        <!--"Agregar enlace al inicio!!!"-->
+    </body>
+</html>
+
+
