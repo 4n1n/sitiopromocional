@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <!--title es el título que se muestra en la pestaña del navegador-->
+        <title>Dashboard</title>
+        <!--p es un párrafo y h(1, 2, 5)son tamaños de titulares-->
+        <p><h2 style="text-align: center";>Listado de Productos</h2></p>
+        <!--Agrego estilo para los bordes de los elementos de las tablas-->
+        <style>
+        table, th, td, tr {
+          border: 1px solid black;
+        }
+        </style>
+    </head>    
+    <body>
+        <table >
+            <thead>
+                <tr>
+                    <th>Categoría</th>
+                    <th>Número de Productos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--Uso un for para recorrer cada objeto PRODUCTS-->
+                {% for o in onroproductos %}
+                <tr>
+                    <td>{{ o.descripcion }}</td>
+                    <td>{{ vars(o[id]) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table >
+            <thead>
+                <tr>
+                    <th>Descuento</th>
+                    <th>Número de Productos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--Uso un for para recorrer cada objeto PRODUCTS-->
+                {% for d in oofert %}
+                
+                <tr>
+                    <td>{{ d.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
