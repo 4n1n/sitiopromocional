@@ -6,17 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+        table, th, td, tr {
+          border: 1px solid black;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Veamos!</h1>{% for c in datos.categorias %}
-    <p>{{c}}</p>
-    {% endfor %}
-    <hr />
-    {% for p in datos.productos %}
-    <p>{{p.categoria}}</p>
-    {% endfor %}
-    <hr />
+    <h1>Categorías/Nro de Productos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Categorías</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in datos.categorias %}
+            <tr>
+                <td>{{c}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
     <table>
         <thead>
             <tr>

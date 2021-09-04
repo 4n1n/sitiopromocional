@@ -42,20 +42,17 @@ def dashboard(request):
     datos['categorias_productos'] = categorias_productos
     return render(request, 'tienda/dashboard.html', {"datos": datos})
 
-
 def prueba(request):
-    #productoscaros=PRODUCTS.objects.all().order_by('precio') [:3]
-    # return render(request,'tienda/prueba.html', {"oproductoscaros":productoscaros})
-    # variables Vista Categorías por Cant. de Productos
-    cat = CATEGORIES.objects.all()
-    nro_prod = CATEGORIES.objects.annotate(Count('products'))
-    vnro_prod = vars(nro_prod)
-    # variables Vista Ofertas por Cant. de Productos
-    prod_tipodeoferta = DISCOUNT.objects.annotate(Count('products'))
-    ofertaprod = DISCOUNT.objects.all()
-    # variables Vista Categoría con su Máximo Descuento.
-    discxcat = CATEGORIES.objects.annotate(Max('products__descuento__porcentaje')).OrderBy(-'products__descuento__porcentaje')
-    # envío todos los objetos al template
-    return render(request, 'tienda/prueba.html', {"ocat": cat,
-                                                  "onroproductos": nro_prod,
-                                                  "otipof": prod_tipodeoferta, "oofert": ofertaprod})
+    datos = {}
+    productos = PRODUCTS.objects.all()
+    descuentos = DISCOUNT.objects.all()
+    descuentos_productos = {}
+    for descuento in descuentos:
+        descuentos_productos[descuento.descripcion] = 0
+    for producto in productos:
+        if (producto.descuento.descripcion in descuentos_productos):
+            descuentos_productos[producto.descuento.descripcion] +=1
+    datos['descuentos'] = descuentos
+    datos['productos'] = productos
+    datos['categorias_descuentos'] = descuentos_productos
+    return render(request, 'tienda/prueba.html', {"datos": datos})
